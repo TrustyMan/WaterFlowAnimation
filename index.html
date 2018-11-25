@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.css">
+  <link rel="stylesheet" type="text/css" href="assets/mainStyle.css">
+</head>
+<body style="padding: 0; margin: 0;">
+  <div>
+    <svg width="100%" height="50%" id = "svg">
+      <defs>
+        <linearGradient id="metal" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
+          <stop offset="25%" style="stop-color:rgb(150,150,150);stop-opacity:1" />
+          <stop offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+          <stop offset="75%" style="stop-color:rgb(150,150,150);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgb(100,100,100);stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <!-- <path fill="url(#metal)" d="M 50 50 C 100 50, 100 50, 200 100 M50 200 C 100 200, 100 200, 200 150 " stroke="black" fill="transparent" /> -->
+    </svg>
+    <div id="slider_group">
+      <div class="sliders">
+        <label>diameter</label>
+        <input type="range" min="10" max="90" step="1" value="30" id = "d_slider_input" oninput="ondiameterChange()">
+      </div>
+      <div class="sliders">
+        <label>Vin</label>
+        <input type="range" min="0" max="100" step="1" value="50" id = "Vin_slider_input" oninput="onVinChange()">
+      </div>
+      <div class="sliders">
+        <label>Vout</label>
+        <input type="range" min="0" max="100" step="1" value="50" id = "Vout_slider_input" oninput="onVoutChange()">
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.js"></script>
+  <script type="text/javascript" src="assets/mainJS.js"></script> 
+</body>
+</html>
