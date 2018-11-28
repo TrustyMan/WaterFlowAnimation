@@ -35,7 +35,7 @@ var drawing = function(){
 	snap.rect(0, 0, 1600, 400).attr({
 		fill: "white"
 	});
-
+	var grad = snap.gradient("l(0, 0, 0, 1)#000-#fff-#000");
 
 	var f = Snap.format("M{start_x} {start_y} L{line_to_x} {line_to_y1}, {hose_end_x1} {hose_end_y1}, {hose_end_x1} {hose_end_y2}, {line_to_x} {line_to_y2}, {start_x} {line_to_y2}, {start_x} {start_y}", {
 	    start_x: start_x,
@@ -82,9 +82,7 @@ var drawing = function(){
 	svg_path3.attr({stroke: "black", strokeWidth: 2});
 	svg_path4.attr({stroke: "black", strokeWidth: 2});
 	svg_path.attr({
-		fill: "lightgrey",
-        stroke: "black",
-        strokeWidth: 2
+		fill: grad
     });
 	// console.log(f);
 	//console.log("snap:", svg_path);
@@ -93,21 +91,21 @@ var drawing = function(){
 	t = Math.sqrt(2 * h/10);
 	L = Vout * t;
 	//DRAWING
-	f = Snap.format("M{curve1_x3} {curve1_y3} L{curve2_x3} {curve2_y3} M{curve2_x3} {curve2_y3} C{curve2_x3} {curve2_y3}, {curve2_x2} {curve2_y2}, {curve2_x1} {curve2_y1} M{curve1_x1} {curve1_y1} C{curve1_x2} {curve1_y2}, {curve1_x3} {curve1_y3}, {curve1_x3} {curve1_y3} ",{
+	f = Snap.format("M{curve2_x3} {curve2_y3} C{curve2_x3} {curve2_y3}, {curve2_x2} {curve2_y2}, {curve2_x1} {curve2_y1} ",{
 		curve1_x1: start_x + h_length + D,
-		curve1_y1: start_y + (D+d)/2,
+		curve1_y1: start_y + (D+2*d)/2,
 		curve1_x2: start_x + h_length + D + L,
-		curve1_y2: start_y + (D+d)/2,
+		curve1_y2: start_y + (D+2*d)/2,
 		curve1_x3: start_x + h_length + D + L,
 		curve1_y3: start_y + 350,
 		curve2_x1: start_x + h_length + D,
-		curve2_y1: start_y + (D+d)/2 - d,
+		curve2_y1: start_y + (D+2*d)/2 - d,
 		curve2_x2: start_x + h_length + D + L + d,
-		curve2_y2: start_y + (D+d)/2,
+		curve2_y2: start_y + (D+2*d)/2,
 		curve2_x3: start_x + h_length + D + L + d,
 		curve2_y3: start_y + 350,
 		line_to_x: start_x + h_length + D,
-		line_to_y: start_y + (D-d)/2
+		line_to_y: start_y + (D+d)/2
 	});
  
 	var water_path = snap.path(f);
@@ -115,6 +113,20 @@ var drawing = function(){
 	// hose_end_x1: start_x + h_length + D,
 	//     hose_end_y1: start_y + (D-d)/2,
 	//     hose_end_y2: start_y + (D+d)/2
+	var radius = (d-5)/2;
+	var c_x = start_x+h_length+D, c_y = start_y + (D+2*d)/2 - d;
+	// console.log(f);
+	var pathLength = Math.floor( water_path.getTotalLength() );
+	prcnt = pathLength / radius;
+	for(let i = 0; i < prcnt; i++){
+		var pt = water_path.getPointAtLength(i*radius);
+		// console.log(pt);
+		pt.x = Math.round(pt.x);
+	 	pt.y = Math.round(pt.y);
+		snap.circle(pt.x+radius, pt.y, radius);
+	}
+	snap.rect(c_x, c_y-radius, radius*2, radius*2);
+	snap.attr({fill: "blue"});
 }
 
 
