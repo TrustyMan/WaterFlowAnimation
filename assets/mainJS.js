@@ -123,9 +123,9 @@ var drawing = function(){
 		// console.log(pt);
 		pt.x = Math.round(pt.x);
 	 	pt.y = Math.round(pt.y);
-		snap.circle(pt.x+radius, pt.y, radius);
+		snap.circle(pt.x, pt.y, radius);
 	}
-	snap.rect(c_x, c_y-radius, radius*2, radius*2);
+	// snap.rect(c_x, c_y-radius, radius*2, radius*2);
 	snap.attr({fill: "blue"});
 }
 
