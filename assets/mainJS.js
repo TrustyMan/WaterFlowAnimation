@@ -1,6 +1,6 @@
 $('input[type="range"]').rangeslider({polyfill: false});
 
-var Vin = 50, Vout = 50, D=100, d=30;
+var Vin = 50, Vout = 50, D=60, d=30;
 var start_x=50, start_y=50, h_length = 400;
 var arrow_offset = D/4, arrow_width = 30;
 var arrow_start_x = start_x + 5, arrow_start_y1 = start_y + arrow_offset, arrow_start_y2 = start_y + arrow_offset*2, arrow_start_y3 = start_y + arrow_offset*3;
