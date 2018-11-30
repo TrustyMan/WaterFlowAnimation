@@ -36,6 +36,7 @@ var drawing = function(){
 		fill: "white"
 	});
 	var grad = snap.gradient("l(0, 0, 0, 1)#000-#fff-#000");
+	var grad1 = snap.gradient("l(0, 0, 0, 1)rgb(0,0,250)-lightblue-rgb(0,0,250)");
 //{hose_end_x1} {hose_end_y1}, {hose_end_x1} {hose_end_y2},
 	var f = Snap.format("M{start_x} {start_y} L{line_to_x} {line_to_y1},  {line_to_x} {line_to_y2}, {start_x} {line_to_y2}, {start_x} {start_y}", {
 	    start_x: start_x,
@@ -49,11 +50,11 @@ var drawing = function(){
 	});
 	var ff = Snap.format("M{line_to_x} {line_to_y1} L{hose_end_x1} {hose_end_y1}, {hose_end_x1} {hose_end_y2},{line_to_x} {line_to_y2}",{
 		line_to_x: start_x + h_length,
-	    line_to_y1: start_y,
-	    line_to_y2: start_y + D,
+	    line_to_y1: start_y+5,
+	    line_to_y2: start_y + D -5,
 	    hose_end_x1: start_x + h_length + D,
-	    hose_end_y1: start_y + (D-d)/2,
-	    hose_end_y2: start_y + (D+d)/2
+	    hose_end_y1: start_y + (D-d)/2 + 5,
+	    hose_end_y2: start_y + (D+d)/2 - 5
 	});
 	snap.path(ff).attr({fill:grad});
 
@@ -92,9 +93,7 @@ var drawing = function(){
 	svg_path3.attr({stroke: "black", strokeWidth: 2});
 	svg_path4.attr({stroke: "black", strokeWidth: 2});
 	svg_path.attr({
-		fill: "seagreen",
-		stroke: "darkgreen",
-		strokeWidth: "5px"
+		fill: grad1,
     });
 	// console.log(f);
 	//console.log("snap:", svg_path);
@@ -121,7 +120,7 @@ var drawing = function(){
 	});
  
 	var water_path = snap.path(f);
-	water_path.attr({stroke: "blue", strokeWidth: 5, fill: "none"});
+	water_path.attr({fill: "none"});
 	// hose_end_x1: start_x + h_length + D,
 	//     hose_end_y1: start_y + (D-d)/2,
 	//     hose_end_y2: start_y + (D+d)/2
@@ -135,7 +134,7 @@ var drawing = function(){
 		// console.log(pt);
 		pt.x = Math.round(pt.x);
 	 	pt.y = Math.round(pt.y);
-		snap.circle(pt.x, pt.y, radius);
+		snap.circle(pt.x, pt.y, radius - 5);
 	}
 	// snap.rect(c_x, c_y-radius, radius*2, radius*2);
 	snap.attr({fill: "blue"});
