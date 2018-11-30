@@ -36,8 +36,8 @@ var drawing = function(){
 		fill: "white"
 	});
 	var grad = snap.gradient("l(0, 0, 0, 1)#000-#fff-#000");
-
-	var f = Snap.format("M{start_x} {start_y} L{line_to_x} {line_to_y1}, {hose_end_x1} {hose_end_y1}, {hose_end_x1} {hose_end_y2}, {line_to_x} {line_to_y2}, {start_x} {line_to_y2}, {start_x} {start_y}", {
+//{hose_end_x1} {hose_end_y1}, {hose_end_x1} {hose_end_y2},
+	var f = Snap.format("M{start_x} {start_y} L{line_to_x} {line_to_y1},  {line_to_x} {line_to_y2}, {start_x} {line_to_y2}, {start_x} {start_y}", {
 	    start_x: start_x,
 	    start_y: start_y,
 	    line_to_x: start_x + h_length,
@@ -47,6 +47,16 @@ var drawing = function(){
 	    hose_end_y1: start_y + (D-d)/2,
 	    hose_end_y2: start_y + (D+d)/2
 	});
+	var ff = Snap.format("M{line_to_x} {line_to_y1} L{hose_end_x1} {hose_end_y1}, {hose_end_x1} {hose_end_y2},{line_to_x} {line_to_y2}",{
+		line_to_x: start_x + h_length,
+	    line_to_y1: start_y,
+	    line_to_y2: start_y + D,
+	    hose_end_x1: start_x + h_length + D,
+	    hose_end_y1: start_y + (D-d)/2,
+	    hose_end_y2: start_y + (D+d)/2
+	});
+	snap.path(ff).attr({fill:grad});
+
 	// t="translate("+(x-x1)+","+(y-y1)+")"
  //        el.setAttribute('transform',t);
 	var f1 = Snap.format("M{arrow_start_x} {arrow_start_y1} L{arrow_end_x} {arrow_start_y1} M{arrow_pick_x1} {arrow_pick_y1} L{arrow_end_x} {arrow_start_y1} M{arrow_pick_x1} {arrow_pick_y2} L{arrow_end_x}, {arrow_start_y1}", {
@@ -82,7 +92,9 @@ var drawing = function(){
 	svg_path3.attr({stroke: "black", strokeWidth: 2});
 	svg_path4.attr({stroke: "black", strokeWidth: 2});
 	svg_path.attr({
-		fill: grad
+		fill: "seagreen",
+		stroke: "darkgreen",
+		strokeWidth: "5px"
     });
 	// console.log(f);
 	//console.log("snap:", svg_path);
